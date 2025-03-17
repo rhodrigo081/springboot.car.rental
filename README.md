@@ -1,7 +1,9 @@
 #Decola Tech 2025
 API RESTful in Spring boot created for bootcamp Decola Tech 2025 in Digital Innovation One
 
-#Class Diagram
+##Class Diagram
+
+```mermaid
 
 classDiagram
     class Filial {
