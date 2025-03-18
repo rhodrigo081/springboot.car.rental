@@ -1,5 +1,6 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -14,9 +15,11 @@ public class Branch {
     private String nameBranch;
 
     @OneToMany(mappedBy = "branch")
+    @JsonIgnore
     private Set<Costumer> costumers;
 
     @OneToMany(mappedBy = "branch")
+    @JsonIgnore
     private Set<Vehicle> vehicles;
 
     public Long getIdBranch() {

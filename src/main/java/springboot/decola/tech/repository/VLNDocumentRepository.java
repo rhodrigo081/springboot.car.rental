@@ -6,5 +6,5 @@ import springboot.decola.tech.entity.VLNDocument;
 import java.util.List;
 
 public interface VLNDocumentRepository extends JpaRepository<VLNDocument, Long> {
-    List<VLNDocument> findVLNByCostumerId(Long costumerId);
+    List<VLNDocument> findVLNByCostumerIdCostumer (Long idCostumer);
 }

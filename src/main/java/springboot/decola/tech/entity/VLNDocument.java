@@ -1,5 +1,6 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -13,11 +14,13 @@ public class VLNDocument {
     private Double valueLease;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = "idVehicle")
+    @JsonIgnore
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "idCostumer")
+    @JsonIgnore
     private Costumer costumer;
 
     public Long getIdLease() {

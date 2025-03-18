@@ -35,10 +35,8 @@ public class BranchController {
     }
 
     @GetMapping("/branches-list")
-    public ResponseEntity<List<Branch>> findAllBranches() {
-        List<Branch> branches = branchService.findAllBranches();
-
-        return ResponseEntity.ok().body(branches);
+    public List<Branch> getAllBranches() {
+        return branchService.findAllBranches();
     }
 
     @DeleteMapping("/delete/{idBranch}")
@@ -49,8 +47,6 @@ public class BranchController {
         if (deleteBranch == null) {
             return ResponseEntity.notFound().build();
         }
-
-        List<Branch> branches = branchService.findAllBranches();
 
         return ResponseEntity.noContent().build();
     }

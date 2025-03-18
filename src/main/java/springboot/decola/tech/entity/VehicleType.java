@@ -1,5 +1,6 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -9,9 +10,10 @@ public class VehicleType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idType;
-    private String description;
+    private String nameType;
 
     @OneToMany(mappedBy = "vehicleType")
+    @JsonIgnore
     private Set<Vehicle> vehicles;
 
     public Long getIdType() {
@@ -22,12 +24,12 @@ public class VehicleType {
         this.idType = idType;
     }
 
-    public String getDescription() {
-        return description;
+    public String getnameType() {
+        return nameType;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setnameType(String nameType) {
+        this.nameType = nameType;
     }
 
     public Set<Vehicle> getVehicles() {

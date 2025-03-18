@@ -1,5 +1,6 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,10 +14,12 @@ public class Vehicle {
 
     @ManyToOne
     @JoinColumn(name = "branch_id")
+    @JsonIgnore
     private Branch branch;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_type_id")
+    @JsonIgnore
     private VehicleType vehicleType;
 
     public String getPlate() {

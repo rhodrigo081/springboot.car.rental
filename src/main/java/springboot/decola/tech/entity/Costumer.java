@@ -1,14 +1,16 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Costumer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCostumer;
     private String nameCostumer;
     private String phoneCostumer;
@@ -16,9 +18,11 @@ public class Costumer {
 
     @ManyToOne
     @JoinColumn(name = "branch_id")
+    @JsonIgnore
     private Branch branch;
 
     @OneToMany(mappedBy = "costumer")
+    @JsonIgnore
     private Set<VLNDocument> vlnDocuments;
 
     public Long getIdCostumer() {

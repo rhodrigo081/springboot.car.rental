@@ -16,7 +16,7 @@ public class CostumerController {
     private CostumerRepository costumerRepository;
 
     @PostMapping("/save")
-    public ResponseEntity save(@RequestBody Costumer costumer) {
+    public ResponseEntity save( @RequestBody Costumer costumer) {
         costumerRepository.save(costumer);
 
         return ResponseEntity.ok().body(costumer);
