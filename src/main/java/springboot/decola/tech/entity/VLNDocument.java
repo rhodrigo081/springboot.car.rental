@@ -10,7 +10,7 @@ public class VLNDocument {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idLease;
     private Date dateLease;
-    private String valueLease;
+    private Double valueLease;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
@@ -36,11 +36,11 @@ public class VLNDocument {
         this.dateLease = dateLease;
     }
 
-    public String getValueLease() {
+    public Double getValueLease() {
         return valueLease;
     }
 
-    public void setValueLease(String valueLease) {
+    public void setValueLease(Double valueLease) {
         this.valueLease = valueLease;
     }
 

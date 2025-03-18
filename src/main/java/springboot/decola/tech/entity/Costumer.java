@@ -10,6 +10,7 @@ public class Costumer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCostumer;
+    private String nameCostumer;
     private String phoneCostumer;
     private String emailCostumer;
 
@@ -26,6 +27,14 @@ public class Costumer {
 
     public void setIdCostumer(Long idCostumer) {
         this.idCostumer = idCostumer;
+    }
+
+    public String getNameCostumer() {
+        return nameCostumer;
+    }
+
+    public void setNameCostumer(String nameCostumer) {
+        this.nameCostumer = nameCostumer;
     }
 
     public String getPhoneCostumer() {

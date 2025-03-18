@@ -1,6 +1,10 @@
 package springboot.decola.tech.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import springboot.decola.tech.entity.Vehicle;
 
-public interface VehicleRepository extends JpaRepository {
+import java.util.List;
+
+public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
+    List<Vehicle> findVehicleByPlate(String plate);
 }

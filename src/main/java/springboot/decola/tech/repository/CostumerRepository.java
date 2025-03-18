@@ -1,6 +1,10 @@
 package springboot.decola.tech.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import springboot.decola.tech.entity.Costumer;
 
-public interface CostumerRepository extends JpaRepository {
+import java.util.List;
+
+public interface CostumerRepository extends JpaRepository<Costumer, Long> {
+    List<Costumer> findByNameCostumer(String nameCostumer);
 }
