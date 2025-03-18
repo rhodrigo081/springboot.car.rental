@@ -17,7 +17,7 @@ public class VehicleService {
         return vehicleRepository.save(vehicle);
     }
 
-    public List<Vehicle> findVehicleByPlate(String plate) {
+    public List<Vehicle> findByPlateVehicle(String plate) {
         return vehicleRepository.findVehicleByPlate(plate);
     }
 
