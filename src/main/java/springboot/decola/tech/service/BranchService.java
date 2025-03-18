@@ -21,7 +21,7 @@ public class BranchService {
         return branchRepository.findByNameBranch(nameBranch);
     }
 
-    public List<Branch> findAllBranch() {
+    public List<Branch> findAllBranches() {
         return branchRepository.findAll();
     }
 
