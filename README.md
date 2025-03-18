@@ -42,5 +42,3 @@ classDiagram
     Veiculo "1" -- "1" NLV : está registrado
     Cliente "1" -- "*" NLV : faz
     Veiculo "1" -- "1" TipoVeiculo : classificado como
-    ClientePF --|> Cliente : herda
-    ClientePJ --|> Cliente : herda
