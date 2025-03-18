@@ -36,18 +36,6 @@ classDiagram
         +Filial filial
     }
 
-    class ClientePF {
-        +string CPF_Cliente
-        +string Sexo
-        +string DtNascimento
-    }
-
-    class ClientePJ {
-        +string CNPJ_Cliente
-        +string Inscricao
-        +string RazaoSocial
-    }
-
     Filial "1" -- "*" Veiculo : possui
     Filial "1" -- "*" Cliente : possui
     Filial "1" -- "*" NLV : realiza
