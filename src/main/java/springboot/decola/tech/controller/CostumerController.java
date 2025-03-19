@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.decola.tech.entity.Costumer;
 import springboot.decola.tech.repository.CostumerRepository;
+import springboot.decola.tech.service.CostumerService;
 
 import java.util.List;
 
@@ -13,18 +14,18 @@ import java.util.List;
 public class CostumerController {
 
     @Autowired
-    private CostumerRepository costumerRepository;
+    private CostumerService costumerService;
 
     @PostMapping("/save")
     public ResponseEntity save( @RequestBody Costumer costumer) {
-        costumerRepository.save(costumer);
+        costumerService.saveCostumer(costumer);
 
         return ResponseEntity.ok().body(costumer);
     }
 
     @GetMapping("/search/{nameCostumer}")
     public ResponseEntity<List<Costumer>> search(@PathVariable String nameCostumer) {
-        List<Costumer> costumer = costumerRepository.findByNameCostumer(nameCostumer);
+        List<Costumer> costumer = costumerService.findByNameCostumer(nameCostumer);
 
         if (costumer.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -37,7 +38,7 @@ public class CostumerController {
     @GetMapping("/costumers-list")
     public ResponseEntity<List<Costumer>> findAllCostumers() {
 
-        List<Costumer> costumers = costumerRepository.findAll();
+        List<Costumer> costumers = costumerService.findAllCostumers();
 
         return ResponseEntity.ok().body(costumers);
 
@@ -45,11 +46,7 @@ public class CostumerController {
 
     @DeleteMapping("/delete/{idCostumer}")
     public ResponseEntity delete(@PathVariable long idCostumer) {
-        costumerRepository.deleteById(idCostumer);
-
-        if (!costumerRepository.existsById(idCostumer)) {
-            return ResponseEntity.noContent().build();
-        }
+        costumerService.deleteCostumer(idCostumer);
 
         return ResponseEntity.ok().build();
     }

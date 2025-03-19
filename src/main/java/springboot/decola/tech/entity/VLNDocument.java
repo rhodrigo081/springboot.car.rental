@@ -1,5 +1,6 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -15,12 +16,12 @@ public class VLNDocument {
 
     @ManyToOne
     @JoinColumn(name = "idVehicle")
-    @JsonIgnore
+    @JsonBackReference
     private Vehicle vehicle;
 
     @ManyToOne
     @JoinColumn(name = "idCostumer")
-    @JsonIgnore
+    @JsonBackReference
     private Costumer costumer;
 
     public Long getIdLease() {

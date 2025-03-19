@@ -1,7 +1,10 @@
 package springboot.decola.tech.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Vehicle {
@@ -10,17 +13,29 @@ public class Vehicle {
     private Long idVehicle;
     private String plate;
     private String model;
-    private  String color;
+    private String color;
+
+    @OneToMany(mappedBy = "vehicle")
+    @JsonManagedReference
+    private Set<VLNDocument> vlnDocuments;
 
     @ManyToOne
-    @JoinColumn(name = "branch_id")
-    @JsonIgnore
+    @JoinColumn(name = "idBranch")
+    @JsonBackReference
     private Branch branch;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_type_id")
-    @JsonIgnore
+    @JoinColumn(name = "idVehicleType")
+    @JsonBackReference
     private VehicleType vehicleType;
+
+    public Long getIdVehicle() {
+        return idVehicle;
+    }
+
+    public void setIdVehicle(Long idVehicle) {
+        this.idVehicle = idVehicle;
+    }
 
     public String getPlate() {
         return plate;
@@ -46,6 +61,14 @@ public class Vehicle {
         this.color = color;
     }
 
+    public Set<VLNDocument> getVlnDocuments() {
+        return vlnDocuments;
+    }
+
+    public void setVlnDocuments(Set<VLNDocument> vlnDocuments) {
+        this.vlnDocuments = vlnDocuments;
+    }
+
     public Branch getBranch() {
         return branch;
     }
@@ -62,3 +85,4 @@ public class Vehicle {
         this.vehicleType = vehicleType;
     }
 }
+

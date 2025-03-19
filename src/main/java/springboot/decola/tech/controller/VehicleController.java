@@ -3,9 +3,14 @@ package springboot.decola.tech.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springboot.decola.tech.entity.Branch;
 import springboot.decola.tech.entity.Vehicle;
+import springboot.decola.tech.entity.VehicleType;
+import springboot.decola.tech.repository.BranchRepository;
 import springboot.decola.tech.repository.VehicleRepository;
+import springboot.decola.tech.repository.VehicleTypeRepository;
 import springboot.decola.tech.service.VehicleService;
+import springboot.decola.tech.service.VehicleTypeService;
 
 import java.util.List;
 
@@ -19,8 +24,11 @@ public class VehicleController {
     @PostMapping("/save")
     public ResponseEntity<Vehicle> save(@RequestBody Vehicle vehicle) {
         vehicleService.saveVehicle(vehicle);
-
-        return ResponseEntity.ok().body(vehicle);
+        if (vehicle.getIdVehicle() != null) {
+            return ResponseEntity.ok(vehicle);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/search/{plate}")

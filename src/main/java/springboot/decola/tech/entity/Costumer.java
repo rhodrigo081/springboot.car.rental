@@ -1,6 +1,7 @@
 package springboot.decola.tech.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -17,12 +18,12 @@ public class Costumer {
     private String emailCostumer;
 
     @ManyToOne
-    @JoinColumn(name = "branch_id")
-    @JsonIgnore
+    @JoinColumn(name = "idBranch")
+    @JsonBackReference
     private Branch branch;
 
     @OneToMany(mappedBy = "costumer")
-    @JsonIgnore
+    @JsonManagedReference
     private Set<VLNDocument> vlnDocuments;
 
     public Long getIdCostumer() {

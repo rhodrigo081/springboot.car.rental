@@ -1,6 +1,7 @@
 package springboot.decola.tech.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -13,7 +14,7 @@ public class VehicleType {
     private String nameType;
 
     @OneToMany(mappedBy = "vehicleType")
-    @JsonIgnore
+    @JsonManagedReference
     private Set<Vehicle> vehicles;
 
     public Long getIdType() {
@@ -24,11 +25,11 @@ public class VehicleType {
         this.idType = idType;
     }
 
-    public String getnameType() {
+    public String getNameType() {
         return nameType;
     }
 
-    public void setnameType(String nameType) {
+    public void setNameType(String nameType) {
         this.nameType = nameType;
     }
 
