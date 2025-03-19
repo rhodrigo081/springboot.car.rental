@@ -45,10 +45,10 @@ public class CostumerController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
-        costumerService.deleteCostumer(id);
+    public ResponseEntity<Costumer> delete(@PathVariable Long id) {
+        Costumer costumer = costumerService.deleteCostumer(id);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(costumer);
     }
 
 }

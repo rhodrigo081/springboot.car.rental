@@ -18,7 +18,19 @@ public class BranchService {
     }
 
     public List<Branch> findByNameBranch(String nameBranch) {
-        return branchRepository.findByName(nameBranch);
+
+        if (nameBranch == null || nameBranch.isEmpty()) {
+            throw new IllegalArgumentException("Branch name is null or empty");
+        }
+
+        List<Branch> searchBranch = branchRepository.findByName(nameBranch);
+
+        if(searchBranch.isEmpty()){
+            throw new IllegalArgumentException("Branch not found");
+        } else {
+            return searchBranch;
+        }
+
     }
 
     public List<Branch> findAllBranches() {

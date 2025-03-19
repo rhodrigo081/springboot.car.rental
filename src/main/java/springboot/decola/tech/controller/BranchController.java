@@ -40,15 +40,15 @@ public class BranchController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteBranch(@PathVariable Long id) {
+    public ResponseEntity<Branch> deleteBranch(@PathVariable Long id) {
 
-        Branch deleteBranch = branchService.deleteBranch(id);
+        Branch branch = branchService.deleteBranch(id);
 
-        if (deleteBranch == null) {
+        if (branch == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().body(branch);
     }
 
 }

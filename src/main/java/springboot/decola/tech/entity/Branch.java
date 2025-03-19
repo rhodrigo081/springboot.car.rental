@@ -1,41 +1,26 @@
 package springboot.decola.tech.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-
-@Entity
+@Entity(name = "tab_branch")
 public class Branch {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
+
+    @Column(unique = true)
     private String cnpj;
     private String phone;
     private String name;
 
-    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    @JsonIgnore
-    private Set<Costumer> costumers = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Costumer> costumers ;
 
-    @OneToMany(mappedBy = "branch")
-    @JsonManagedReference
-    @JsonIgnore
-    private Set<Vehicle> vehicles = new HashSet<>();
-
-    public Branch() {}
-
-    public Branch(String cnpj, String phone, String name) {
-        this.cnpj = cnpj;
-        this.phone = phone;
-        this.name = name;
-    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Vehicle> vehicles;
 
     public Long getId() {
         return id;
@@ -69,19 +54,19 @@ public class Branch {
         this.name = name;
     }
 
-    public Set<Costumer> getCostumers() {
+    public List<Costumer> getCostumers() {
         return costumers;
     }
 
-    public void setCostumers(Set<Costumer> costumers) {
+    public void setCostumers(List<Costumer> costumers) {
         this.costumers = costumers;
     }
 
-    public Set<Vehicle> getVehicles() {
+    public List<Vehicle> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(Set<Vehicle> vehicles) {
+    public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
 }

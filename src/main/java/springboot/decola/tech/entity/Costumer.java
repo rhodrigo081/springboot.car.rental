@@ -1,31 +1,27 @@
 package springboot.decola.tech.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Costumer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String phone;
     private String email;
+    private String cpf;
 
-    @ManyToOne
-    @JoinColumn(name = "branch_id")
-    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Branch branch;
 
-    @OneToMany(mappedBy = "costumer")
-    @JsonManagedReference
-    private Set<VLNDocument> vlnDocuments = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<VLNDocument> vlnDocuments;
 
     public Long getId() {
         return id;
@@ -59,6 +55,14 @@ public class Costumer {
         this.email = email;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public Branch getBranch() {
         return branch;
     }
@@ -67,11 +71,11 @@ public class Costumer {
         this.branch = branch;
     }
 
-    public Set<VLNDocument> getVlnDocuments() {
+    public List<VLNDocument> getVlnDocuments() {
         return vlnDocuments;
     }
 
-    public void setVlnDocuments(Set<VLNDocument> vlnDocuments) {
+    public void setVlnDocuments(List<VLNDocument> vlnDocuments) {
         this.vlnDocuments = vlnDocuments;
     }
 }

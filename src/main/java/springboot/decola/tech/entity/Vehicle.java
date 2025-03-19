@@ -1,35 +1,30 @@
 package springboot.decola.tech.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Vehicle {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String plate;
-    private String model;
     private String color;
+    private String model;
 
-    @OneToMany(mappedBy = "vehicle")
-    @JsonManagedReference
-    private Set<VLNDocument> vlnDocuments = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<VLNDocument> vlnDocuments;
 
-    @ManyToOne
-    @JoinColumn(name = "branch_id")
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="branch_id")
     private Branch branch;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicleType_id")
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="vehicle_type_id")
     private VehicleType vehicleType;
-
 
     public Long getId() {
         return id;
@@ -47,14 +42,6 @@ public class Vehicle {
         this.plate = plate;
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public String getColor() {
         return color;
     }
@@ -63,11 +50,19 @@ public class Vehicle {
         this.color = color;
     }
 
-    public Set<VLNDocument> getVlnDocuments() {
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public List<VLNDocument> getVlnDocuments() {
         return vlnDocuments;
     }
 
-    public void setVlnDocuments(Set<VLNDocument> vlnDocuments) {
+    public void setVlnDocuments(List<VLNDocument> vlnDocuments) {
         this.vlnDocuments = vlnDocuments;
     }
 

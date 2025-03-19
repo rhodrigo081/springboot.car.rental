@@ -1,27 +1,29 @@
 package springboot.decola.tech.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+
+
 
 import java.util.Date;
 
 @Entity
 public class VLNDocument {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date date;
-    private Double value;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id")
-    @JsonBackReference
+    private Date date;
+
+    private Double documentValue;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="vehicle_id")
     private Vehicle vehicle;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "costumer_id")
-    @JsonBackReference
     private Costumer costumer;
 
     public Long getId() {
@@ -40,12 +42,12 @@ public class VLNDocument {
         this.date = date;
     }
 
-    public Double getValue() {
-        return value;
+    public Double getDocumentValue() {
+        return documentValue;
     }
 
-    public void setValue(Double value) {
-        this.value = value;
+    public void setDocumentValue(Double documentValue) {
+        this.documentValue = documentValue;
     }
 
     public Vehicle getVehicle() {

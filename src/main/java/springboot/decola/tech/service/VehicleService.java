@@ -1,5 +1,6 @@
 package springboot.decola.tech.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.decola.tech.entity.Branch;
@@ -21,6 +22,7 @@ public class VehicleService {
     @Autowired
     private VehicleTypeRepository vehicleTypeRepository;
 
+    @Transactional
     public void saveVehicle(Vehicle vehicle) {
         Branch branch = branchRepository.findById(vehicle.getBranch().getId()).orElse(null);
         VehicleType vehicleType = vehicleTypeRepository.findById(vehicle.getVehicleType().getId()).orElse(null);

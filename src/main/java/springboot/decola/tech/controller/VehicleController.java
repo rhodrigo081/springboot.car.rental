@@ -1,16 +1,11 @@
 package springboot.decola.tech.controller;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springboot.decola.tech.entity.Branch;
 import springboot.decola.tech.entity.Vehicle;
-import springboot.decola.tech.entity.VehicleType;
-import springboot.decola.tech.repository.BranchRepository;
-import springboot.decola.tech.repository.VehicleRepository;
-import springboot.decola.tech.repository.VehicleTypeRepository;
 import springboot.decola.tech.service.VehicleService;
-import springboot.decola.tech.service.VehicleTypeService;
 
 import java.util.List;
 
@@ -42,10 +37,8 @@ public class VehicleController {
     }
 
     @GetMapping("/vehicles-list")
-    public ResponseEntity<List<Vehicle>> findAll() {
-        List<Vehicle> vehicles = vehicleService.findAllVehicles();
-
-        return ResponseEntity.ok().body(vehicles);
+    public List<Vehicle>  findAllVehicles() {
+        return vehicleService.findAllVehicles();
     }
 
     @DeleteMapping("/delete/{plate}")
