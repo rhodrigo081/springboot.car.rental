@@ -1,58 +1,72 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
+
 
 @Entity
 public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idBranch;
-    private String cnpjBranch;
-    private String phoneBranch;
-    private String nameBranch;
+    private Long id;
+    private String cnpj;
+    private String phone;
+    private String name;
+
+    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private Set<Costumer> costumers = new HashSet<>();
 
     @OneToMany(mappedBy = "branch")
     @JsonManagedReference
-    private Set<Costumer> costumers;
+    @JsonIgnore
+    private Set<Vehicle> vehicles = new HashSet<>();
 
-    @OneToMany(mappedBy = "branch")
-    @JsonManagedReference
-    private Set<Vehicle> vehicles;
+    public Branch() {}
 
-    public Long getIdBranch() {
-        return idBranch;
+    public Branch(String cnpj, String phone, String name) {
+        this.cnpj = cnpj;
+        this.phone = phone;
+        this.name = name;
     }
 
-    public void setIdBranch(Long idBranch) {
-        this.idBranch = idBranch;
+    public Long getId() {
+        return id;
     }
 
-    public String getCnpjBranch() {
-        return cnpjBranch;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCnpjBranch(String cnpjBranch) {
-        this.cnpjBranch = cnpjBranch;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public String getPhoneBranch() {
-        return phoneBranch;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public void setPhoneBranch(String phoneBranch) {
-        this.phoneBranch = phoneBranch;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getNameBranch() {
-        return nameBranch;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public void setNameBranch(String nameBranch) {
-        this.nameBranch = nameBranch;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Costumer> getCostumers() {

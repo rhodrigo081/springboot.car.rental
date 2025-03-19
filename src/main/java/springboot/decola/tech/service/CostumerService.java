@@ -18,7 +18,7 @@ public class CostumerService {
     }
 
     public List<Costumer> findByNameCostumer(String nameCostumer) {
-        return costumerRepository.findByNameCostumer(nameCostumer);
+        return costumerRepository.findByName(nameCostumer);
     }
 
     public List<Costumer> findAllCostumers() {

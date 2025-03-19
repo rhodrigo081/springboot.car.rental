@@ -18,7 +18,7 @@ public class BranchService {
     }
 
     public List<Branch> findByNameBranch(String nameBranch) {
-        return branchRepository.findByNameBranch(nameBranch);
+        return branchRepository.findByName(nameBranch);
     }
 
     public List<Branch> findAllBranches() {

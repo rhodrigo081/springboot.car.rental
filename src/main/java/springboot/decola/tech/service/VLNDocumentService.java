@@ -18,7 +18,7 @@ public class VLNDocumentService {
     }
 
     public List<VLNDocument> findVLNByCostumerId(Long costumerId) {
-        return vLNDocumentRepository.findVLNByCostumerIdCostumer(costumerId);
+        return vLNDocumentRepository.findByCostumerId(costumerId);
     }
 
     public List<VLNDocument> findAll() {

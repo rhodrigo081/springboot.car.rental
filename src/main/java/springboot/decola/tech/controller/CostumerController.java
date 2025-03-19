@@ -23,9 +23,9 @@ public class CostumerController {
         return ResponseEntity.ok().body(costumer);
     }
 
-    @GetMapping("/search/{nameCostumer}")
-    public ResponseEntity<List<Costumer>> search(@PathVariable String nameCostumer) {
-        List<Costumer> costumer = costumerService.findByNameCostumer(nameCostumer);
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<Costumer>> search(@PathVariable String name) {
+        List<Costumer> costumer = costumerService.findByNameCostumer(name);
 
         if (costumer.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -44,9 +44,9 @@ public class CostumerController {
 
     }
 
-    @DeleteMapping("/delete/{idCostumer}")
-    public ResponseEntity delete(@PathVariable long idCostumer) {
-        costumerService.deleteCostumer(idCostumer);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        costumerService.deleteCostumer(id);
 
         return ResponseEntity.ok().build();
     }

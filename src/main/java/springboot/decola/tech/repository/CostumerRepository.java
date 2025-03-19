@@ -6,5 +6,5 @@ import springboot.decola.tech.entity.Costumer;
 import java.util.List;
 
 public interface CostumerRepository extends JpaRepository<Costumer, Long> {
-    List<Costumer> findByNameCostumer(String nameCostumer);
+    List<Costumer> findByName(String name);
 }

@@ -4,33 +4,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class VehicleType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idType;
-    private String nameType;
+    private Long id;
+    private String name;
 
     @OneToMany(mappedBy = "vehicleType")
     @JsonManagedReference
-    private Set<Vehicle> vehicles;
+    private Set<Vehicle> vehicles = new HashSet<>();
 
-    public Long getIdType() {
-        return idType;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdType(Long idType) {
-        this.idType = idType;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNameType() {
-        return nameType;
+    public String getName() {
+        return name;
     }
 
-    public void setNameType(String nameType) {
-        this.nameType = nameType;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Vehicle> getVehicles() {

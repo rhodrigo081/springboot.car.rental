@@ -22,8 +22,8 @@ public class VehicleService {
     private VehicleTypeRepository vehicleTypeRepository;
 
     public void saveVehicle(Vehicle vehicle) {
-        Branch branch = branchRepository.findById(vehicle.getBranch().getIdBranch()).orElse(null);
-        VehicleType vehicleType = vehicleTypeRepository.findById(vehicle.getVehicleType().getIdType()).orElse(null);
+        Branch branch = branchRepository.findById(vehicle.getBranch().getId()).orElse(null);
+        VehicleType vehicleType = vehicleTypeRepository.findById(vehicle.getVehicleType().getId()).orElse(null);
 
         if (branch == null || vehicleType == null) {
             System.out.println("Erro: Branch ou VehicleType não encontrados");

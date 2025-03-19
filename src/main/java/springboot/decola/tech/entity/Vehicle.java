@@ -4,37 +4,39 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idVehicle;
+    private Long id;
     private String plate;
     private String model;
     private String color;
 
     @OneToMany(mappedBy = "vehicle")
     @JsonManagedReference
-    private Set<VLNDocument> vlnDocuments;
+    private Set<VLNDocument> vlnDocuments = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "idBranch")
+    @JoinColumn(name = "branch_id")
     @JsonBackReference
     private Branch branch;
 
     @ManyToOne
-    @JoinColumn(name = "idVehicleType")
+    @JoinColumn(name = "vehicleType_id")
     @JsonBackReference
     private VehicleType vehicleType;
 
-    public Long getIdVehicle() {
-        return idVehicle;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setIdVehicle(Long idVehicle) {
-        this.idVehicle = idVehicle;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPlate() {

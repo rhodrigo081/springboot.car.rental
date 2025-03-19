@@ -10,42 +10,42 @@ import java.util.Date;
 public class VLNDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idLease;
-    private Date dateLease;
-    private Double valueLease;
+    private Long id;
+    private Date date;
+    private Double value;
 
     @ManyToOne
-    @JoinColumn(name = "idVehicle")
+    @JoinColumn(name = "vehicle_id")
     @JsonBackReference
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "idCostumer")
+    @JoinColumn(name = "costumer_id")
     @JsonBackReference
     private Costumer costumer;
 
-    public Long getIdLease() {
-        return idLease;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdLease(Long idLease) {
-        this.idLease = idLease;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Date getDateLease() {
-        return dateLease;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDateLease(Date dateLease) {
-        this.dateLease = dateLease;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Double getValueLease() {
-        return valueLease;
+    public Double getValue() {
+        return value;
     }
 
-    public void setValueLease(Double valueLease) {
-        this.valueLease = valueLease;
+    public void setValue(Double value) {
+        this.value = value;
     }
 
     public Vehicle getVehicle() {

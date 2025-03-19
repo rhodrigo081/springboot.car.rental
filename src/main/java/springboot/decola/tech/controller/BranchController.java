@@ -8,7 +8,7 @@ import springboot.decola.tech.service.BranchService;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/branch")
 public class BranchController {
@@ -19,14 +19,14 @@ public class BranchController {
     @PostMapping("/save")
     public ResponseEntity<Branch> saveBranch(@RequestBody Branch branch) {
 
-        branchService.saveBranch(branch);
+        Branch savedBranch = branchService.saveBranch(branch);
 
-        return ResponseEntity.ok().body(branch);
+        return ResponseEntity.ok().body(savedBranch);
     }
 
-    @GetMapping("/search/{nameBranch}")
-    public ResponseEntity<List<Branch>> searchBranch(@PathVariable String nameBranch) {
-        List<Branch> branches = branchService.findByNameBranch(nameBranch);
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<Branch>> searchBranch(@PathVariable String name) {
+        List<Branch> branches = branchService.findByNameBranch(name);
 
         if (branches.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -39,10 +39,10 @@ public class BranchController {
         return branchService.findAllBranches();
     }
 
-    @DeleteMapping("/delete/{idBranch}")
-    public ResponseEntity<Void> deleteBranch(@PathVariable Long idBranch) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteBranch(@PathVariable Long id) {
 
-        Branch deleteBranch = branchService.deleteBranch(idBranch);
+        Branch deleteBranch = branchService.deleteBranch(id);
 
         if (deleteBranch == null) {
             return ResponseEntity.notFound().build();

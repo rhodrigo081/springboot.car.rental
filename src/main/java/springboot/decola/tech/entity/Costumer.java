@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,50 +13,50 @@ public class Costumer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCostumer;
-    private String nameCostumer;
-    private String phoneCostumer;
-    private String emailCostumer;
+    private Long id;
+    private String name;
+    private String phone;
+    private String email;
 
     @ManyToOne
-    @JoinColumn(name = "idBranch")
+    @JoinColumn(name = "branch_id")
     @JsonBackReference
     private Branch branch;
 
     @OneToMany(mappedBy = "costumer")
     @JsonManagedReference
-    private Set<VLNDocument> vlnDocuments;
+    private Set<VLNDocument> vlnDocuments = new HashSet<>();
 
-    public Long getIdCostumer() {
-        return idCostumer;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdCostumer(Long idCostumer) {
-        this.idCostumer = idCostumer;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNameCostumer() {
-        return nameCostumer;
+    public String getName() {
+        return name;
     }
 
-    public void setNameCostumer(String nameCostumer) {
-        this.nameCostumer = nameCostumer;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPhoneCostumer() {
-        return phoneCostumer;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneCostumer(String phoneCostumer) {
-        this.phoneCostumer = phoneCostumer;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getEmailCostumer() {
-        return emailCostumer;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailCostumer(String emailCostumer) {
-        this.emailCostumer = emailCostumer;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Branch getBranch() {

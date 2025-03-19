@@ -6,5 +6,5 @@ import springboot.decola.tech.entity.Branch;
 import java.util.List;
 
 public interface BranchRepository extends JpaRepository<Branch, Long> {
-    List<Branch> findByNameBranch(String nameBranch);
+    List<Branch> findByName(String name);
 }

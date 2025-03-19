@@ -24,7 +24,7 @@ public class VehicleController {
     @PostMapping("/save")
     public ResponseEntity<Vehicle> save(@RequestBody Vehicle vehicle) {
         vehicleService.saveVehicle(vehicle);
-        if (vehicle.getIdVehicle() != null) {
+        if (vehicle.getId() != null) {
             return ResponseEntity.ok(vehicle);
         } else {
             return ResponseEntity.badRequest().body(null);
