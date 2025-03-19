@@ -14,7 +14,7 @@ public class VehicleType {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Vehicle> vehicles;
 
     public Long getId() {

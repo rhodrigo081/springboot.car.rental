@@ -20,7 +20,7 @@ public class Costumer {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Branch branch;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<VLNDocument> vlnDocuments;
 
     public Long getId() {

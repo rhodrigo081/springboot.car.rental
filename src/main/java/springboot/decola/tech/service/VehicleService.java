@@ -28,7 +28,7 @@ public class VehicleService {
         VehicleType vehicleType = vehicleTypeRepository.findById(vehicle.getVehicleType().getId()).orElse(null);
 
         if (branch == null || vehicleType == null) {
-            System.out.println("Erro: Branch ou VehicleType não encontrados");
+            System.out.println("Erro: Branch or VehicleType not found");
             return;
         }
 

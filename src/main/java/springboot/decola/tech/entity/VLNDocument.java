@@ -2,7 +2,8 @@ package springboot.decola.tech.entity;
 
 
 import jakarta.persistence.*;
-
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 
 import java.util.Date;
@@ -20,10 +21,12 @@ public class VLNDocument {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="vehicle_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Vehicle vehicle;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "costumer_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Costumer costumer;
 
     public Long getId() {

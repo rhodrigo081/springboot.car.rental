@@ -1,12 +1,15 @@
 package springboot.decola.tech.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.decola.tech.entity.Branch;
+import springboot.decola.tech.repository.BranchRepository;
 import springboot.decola.tech.service.BranchService;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -15,6 +18,8 @@ public class BranchController {
 
     @Autowired
     private BranchService branchService;
+    @Autowired
+    private BranchRepository branchRepository;
 
     @PostMapping("/save")
     public ResponseEntity<Branch> saveBranch(@RequestBody Branch branch) {
@@ -41,14 +46,18 @@ public class BranchController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Branch> deleteBranch(@PathVariable Long id) {
+        Optional<Branch> branchOptional = branchRepository.findById(id);
 
-        Branch branch = branchService.deleteBranch(id);
+        if (branchOptional.isPresent()) {
+            Branch branch = branchOptional.get();
 
-        if (branch == null) {
-            return ResponseEntity.notFound().build();
+            branchRepository.delete(branch);
+
+            return ResponseEntity.ok(branch);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null);
         }
-
-        return ResponseEntity.ok().body(branch);
     }
 
 }

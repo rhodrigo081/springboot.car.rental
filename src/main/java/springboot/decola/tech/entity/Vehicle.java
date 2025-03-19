@@ -1,6 +1,8 @@
 package springboot.decola.tech.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -15,15 +17,17 @@ public class Vehicle {
     private String color;
     private String model;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<VLNDocument> vlnDocuments;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="branch_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Branch branch;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="vehicle_type_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private VehicleType vehicleType;
 
     public Long getId() {
