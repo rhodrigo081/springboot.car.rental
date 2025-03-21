@@ -4,41 +4,50 @@ API RESTful in Spring boot created for bootcamp Decola Tech 2025 in Digital Inno
 ## Class Diagram
 
 ```mermaid
-
 classDiagram
-    class Filial {
-        +string CNPJ_Filial
-        +string Telefone
-        +string Email
+    class Branch {
+        +int id
+        +string cnpj
+        +string phone
+        +string name
+        +List~Customer~ customers
+        +List~Vehicle~ vehicles
     }
-
-    class Veiculo {
-        +string Placa
-        +string Modelo
-        +string Cor
+    
+    class Customer {
+        +int id
+        +string name
+        +string phone
+        +string email
+        +string cpf
     }
-
-    class TipoVeiculo {
-        +int Cd_Tipo
-        +string Descricao
+    
+    class Vehicle {
+        +int id
+        +string plate
+        +string color
+        +string model
+        +VehicleType vehicleType
+        +List~VLNDocument~ vlnDocuments
     }
-
-    class NLV {
-        +int Nr_NLV
-        +string Data
-        +float ValorLocacao
+    
+    class VehicleType {
+        +int id
+        +string name
     }
-
-    class Cliente {
-        +int Cd_Cliente
-        +string Telefone
-        +string Email
-        +Filial filial
+    
+    class VLNDocument {
+        +int id
+        +string date
+        +float documentValue
+        +Vehicle vehicle
+        +Customer costumer
     }
+    
+    Branch "1" -- "*" Vehicle : has
+    Branch "1" -- "*" Customer : has
+    Vehicle "1" -- "*" VLNDocument : has
+    Vehicle "1" -- "1" VehicleType : has
+    VLNDocument "1" -- "1" Vehicle : references
+    VLNDocument "1" -- "1" Customer : references
 
-    Filial "1" -- "*" Veiculo : possui
-    Filial "1" -- "*" Cliente : possui
-    Filial "1" -- "*" NLV : realiza
-    Veiculo "1" -- "1" NLV : está registrado
-    Cliente "1" -- "*" NLV : faz
-    Veiculo "1" -- "1" TipoVeiculo : classificado como
