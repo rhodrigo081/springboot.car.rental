@@ -1,5 +1,7 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -17,17 +19,19 @@ public class Vehicle {
     private String color;
     private String model;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<VLNDocument> vlnDocuments;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="branch_id")
+    @JoinColumn(name = "branch_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference
     private Branch branch;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="vehicle_type_id")
+    @JoinColumn(name = "vehicle_type_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties("vehicles") // Evita referência cíclica
     private VehicleType vehicleType;
 
     public Long getId() {

@@ -6,6 +6,7 @@ import springboot.decola.tech.entity.VehicleType;
 import springboot.decola.tech.repository.VehicleTypeRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class VehicleTypeService {
@@ -14,19 +15,32 @@ public class VehicleTypeService {
     private VehicleTypeRepository vehicleTypeRepository;
 
     public VehicleType saveVehicleType(VehicleType vehicleType) {
+
+        if (vehicleType.getName() == null || vehicleType.getName().isEmpty())
+        {
+            throw new IllegalArgumentException("Fill in all fields");
+        }
+
         return vehicleTypeRepository.save(vehicleType);
     }
 
     public List<VehicleType> findAllVehicleTypes() {
-        return vehicleTypeRepository.findAll();
+
+        List<VehicleType> vehicleTypes = vehicleTypeRepository.findAll();
+
+        if (vehicleTypes.isEmpty() || vehicleTypes == null) {
+            throw new NoSuchElementException("No vehicle types created");
+        }
+
+        return vehicleTypes;
     }
 
     public VehicleType deleteVehicleType(Long id) {
-        VehicleType vehicleType = vehicleTypeRepository.findById(id).orElse(null);
-        if (vehicleType != null) {
-            vehicleTypeRepository.delete(vehicleType);
-        }
-        return vehicleType;
+
+        VehicleType deletedVehicleType = vehicleTypeRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Vehicle type does not exist"));
+
+        return deletedVehicleType;
     }
 
 

@@ -18,6 +18,7 @@ public class CostumerController {
 
     @PostMapping("/save")
     public ResponseEntity save( @RequestBody Costumer costumer) {
+
         costumerService.saveCostumer(costumer);
 
         return ResponseEntity.ok().body(costumer);
@@ -25,11 +26,8 @@ public class CostumerController {
 
     @GetMapping("/search/{name}")
     public ResponseEntity<List<Costumer>> search(@PathVariable String name) {
-        List<Costumer> costumer = costumerService.findByNameCostumer(name);
 
-        if (costumer.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
+        List<Costumer> costumer = costumerService.findByNameCostumer(name);
 
         return ResponseEntity.ok().body(costumer);
 
@@ -46,6 +44,7 @@ public class CostumerController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Costumer> delete(@PathVariable Long id) {
+
         Costumer costumer = costumerService.deleteCostumer(id);
 
         return ResponseEntity.ok().body(costumer);

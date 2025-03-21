@@ -1,6 +1,5 @@
 package springboot.decola.tech.controller;
 
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,39 +16,33 @@ public class VehicleController {
     private VehicleService vehicleService;
 
     @PostMapping("/save")
-    public ResponseEntity<Vehicle> save(@RequestBody Vehicle vehicle) {
-        vehicleService.saveVehicle(vehicle);
-        if (vehicle.getId() != null) {
-            return ResponseEntity.ok(vehicle);
-        } else {
-            return ResponseEntity.badRequest().body(null);
-        }
+    public ResponseEntity<Vehicle> saveVehicle(@RequestBody Vehicle vehicle) {
+
+        Vehicle savedVehicle = vehicleService.saveVehicle(vehicle);
+
+        return ResponseEntity.ok().body(savedVehicle);
+
     }
 
     @GetMapping("/search/{plate}")
-    public ResponseEntity<List<Vehicle>> search(@PathVariable String plate) {
-        List<Vehicle> vehicle = vehicleService.findByPlateVehicle(plate);
-        if (vehicle == null) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<List<Vehicle>> searchVehicle(@PathVariable String plate) {
 
-        return ResponseEntity.ok().body(vehicle);
+        List<Vehicle> searchedVehicle = vehicleService.findByPlateVehicle(plate);
+
+        return ResponseEntity.ok().body(searchedVehicle);
     }
 
     @GetMapping("/vehicles-list")
-    public List<Vehicle>  findAllVehicles() {
+    public List<Vehicle> listAllVehicles() {
         return vehicleService.findAllVehicles();
     }
 
     @DeleteMapping("/delete/{plate}")
-    public ResponseEntity<Vehicle> delete(@PathVariable String plate) {
-        Vehicle vehicle = vehicleService.deleteVehicleByPlate(plate);
+    public ResponseEntity<Vehicle> deleteVehicle(@PathVariable String plate) {
 
-        if (vehicle == null) {
-            return ResponseEntity.notFound().build();
-        }
+        Vehicle deletedVehicle = vehicleService.deleteVehicleByPlate(plate);
 
-        return ResponseEntity.ok().body(vehicle);
+        return ResponseEntity.ok().body(deletedVehicle);
     }
 
 }

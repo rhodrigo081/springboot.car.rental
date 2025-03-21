@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 import springboot.decola.tech.entity.Branch;
 import springboot.decola.tech.repository.BranchRepository;
 
+
 import java.util.List;
+import java.util.NoSuchElementException;
+
 
 @Service
 public class BranchService {
@@ -14,34 +17,45 @@ public class BranchService {
     private BranchRepository branchRepository;
 
     public Branch saveBranch(Branch branch) {
+
+        if (branch.getCnpj() == null || branch.getCnpj().isEmpty() ||
+                branch.getName() == null || branch.getName().isEmpty() ||
+                branch.getPhone() == null || branch.getPhone().isEmpty()) {
+            throw new IllegalArgumentException("Fill in all fields");
+        }
+
         return branchRepository.save(branch);
     }
 
-    public List<Branch> findByNameBranch(String nameBranch) {
+    public List<Branch> findByNameBranch(String name) {
 
-        if (nameBranch == null || nameBranch.isEmpty()) {
-            throw new IllegalArgumentException("Branch name is null or empty");
+        List<Branch> searchedBranch = branchRepository.findByName(name);
+
+        if (searchedBranch.isEmpty() || searchedBranch == null) {
+            throw new NoSuchElementException("Branch does not exist");
         }
 
-        List<Branch> searchBranch = branchRepository.findByName(nameBranch);
-
-        if(searchBranch.isEmpty()){
-            throw new IllegalArgumentException("Branch not found");
-        } else {
-            return searchBranch;
-        }
+        return searchedBranch;
 
     }
 
     public List<Branch> findAllBranches() {
-        return branchRepository.findAll();
+
+        List<Branch> branches = branchRepository.findAll();
+
+        if (branches.isEmpty() || branches == null) {
+            throw new NoSuchElementException("No branches created");
+        }
+
+        return branches;
     }
 
     public Branch deleteBranch(Long id) {
-        Branch branch = branchRepository.findById(id).orElse(null);
-        if (branch != null) {
-            branchRepository.delete(branch);
-        }
-        return branch;
+
+        Branch deletedBranch = branchRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Branch does not exist"));
+
+        return deletedBranch;
+
     }
 }

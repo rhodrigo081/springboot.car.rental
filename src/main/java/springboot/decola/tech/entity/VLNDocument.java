@@ -1,6 +1,7 @@
 package springboot.decola.tech.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -16,17 +17,18 @@ public class VLNDocument {
     private Long id;
 
     private Date date;
-
     private Double documentValue;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="vehicle_id")
+    @JoinColumn(name = "vehicle_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties("vlnDocuments")
     private Vehicle vehicle;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "costumer_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties("vlnDocuments")
     private Costumer costumer;
 
     public Long getId() {

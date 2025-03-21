@@ -1,8 +1,11 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,8 +17,9 @@ public class VehicleType {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<Vehicle> vehicles;
+    @OneToMany(mappedBy = "vehicleType", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonIgnoreProperties("vehicleType") // Evita referência cíclica
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     public Long getId() {
         return id;
