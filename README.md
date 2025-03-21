@@ -75,9 +75,9 @@ classDiagram
 ```
 ## 🚀 Getting Started
 **Prerequisites**
-- **Java 17+
-- **Maven
-- **PostgreSQL
+- Java 17+
+- Maven
+- PostgreSQL
 
 **Installation**
 
