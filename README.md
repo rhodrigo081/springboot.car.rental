@@ -1,39 +1,24 @@
-# Vehicle Allocation System
-The Vehicle Allocation System is a Spring Boot application designed to streamline vehicle allocation and management across multiple branches. It provides a structured way to manage branches, customers, vehicles, and rental transactions, ensuring efficient operations for car rental companies or fleet management services.
+# 🚗 Vehicle Allocation System  
 
-Key Features:
-Branch Management: Each branch has a unique CNPJ, contact information, and a list of associated customers and vehicles.
+A **Spring Boot** application designed for managing vehicle allocation across multiple branches. This system helps track branches, customers, vehicles, and rental transactions efficiently.  
 
-Customer Records: Maintains customer data, linking each customer to a specific branch.
+## 📌 Features  
+- **Branch Management:** Register and manage multiple branches with contact information.  
+- **Customer Records:** Store customer details, linking each customer to a specific branch.  
+- **Vehicle Management:** Register vehicles with attributes such as plate, color, and model.  
+- **Vehicle Types:** Classify vehicles into categories (e.g., Sedan, SUV, Truck).  
+- **VLN Document Tracking:** Manage rental transactions with rental date and value.  
 
-Vehicle Management: Supports vehicle registration with attributes such as plate, color, model, and vehicle type.
+## 🛠️ Tech Stack  
+- **Spring Boot** – Backend framework  
+- **Spring Data JPA** – ORM for database management  
+- **Spring WebFlux** – Reactive programming for non-blocking API communication  
+- **H2 Database** – In-memory database for local development  
+- **PostgreSQL** – Relational database for production  
+- **Jackson Databind** – JSON serialization/deserialization  
+- **JUnit & Reactor Test** – Automated testing  
 
-Vehicle Type Classification: Organizes vehicles based on their type (e.g., Sedan, SUV, Truck).
-
-VLN Document Tracking: Records rental transactions with details like date and document value.
-
-
-Technologies Used:
-Spring Boot – Core framework for building the application.
-
-Spring Data JPA – ORM for database management.
-
-Spring WebFlux – Enables reactive, non-blocking API communication.
-
-H2 Database – In-memory database for local development and testing.
-
-PostgreSQL – Relational database for production environments.
-
-Jackson Databind – Handles JSON serialization and deserialization.
-
-Project Reactor – Supports reactive programming for high-performance operations.
-
-JUnit & Reactor Test – Ensures application reliability through testing.
-
-
-This system provides a scalable and reactive architecture, making it ideal for high-demand environments requiring real-time vehicle and customer management.
-
-## Class Diagram
+## 📂 Class Diagram  
 
 ```mermaid
 classDiagram
@@ -42,8 +27,8 @@ classDiagram
         +String cnpj
         +String phone
         +String name
-        +Lis<Customer> customers
-        +List<Vehicle> vehicles
+        +List~Customer~ customers
+        +List~Vehicle~ vehicles
     }
     
     class Customer {
@@ -53,7 +38,7 @@ classDiagram
         +String email
         +String cpf
         +Branch branch
-        +List<VLNDocument> vlnDocuments
+        +List~VLNDocument~ vlnDocuments
     }
     
     class Vehicle {
@@ -63,13 +48,13 @@ classDiagram
         +String model
         +VehicleType vehicleType
         +Branch branch
-        +List<VLNDocument> vlnDocuments
+        +List~VLNDocument~ vlnDocuments
     }
     
     class VehicleType {
         +Long id
         +String name
-        +List<Vehicle> vehicles
+        +List~Vehicle~ vehicles
     }
     
     class VLNDocument {
@@ -87,5 +72,29 @@ classDiagram
     Customer "1" -- "*" VLNDocument : has
     VLNDocument "1" -- "1" Vehicle : references
     VLNDocument "1" -- "1" Customer : references
+```
+## 🚀 Getting Started
+**Prerequisites**
+Java 17+
+Maven
+PostgreSQL
 
+**Installation**
+
+```bash
+git clone https://github.com/seu-usuario/vehicle-allocation-system.git
+cd vehicle-allocation-system
+mvn clean install
+```
+**Run the application**
+```bash
+mvn spring-boot:run
+```
+
+**API test with CURL**
+```bash
+curl -X POST http://localhost:8080/customers \
+     -H "Content-Type: application/json" \
+     -d '{"name": "John Doe", "email": "johndoe@example.com", "phone": "123456789", "cpf": "000.000.000-00"}'
+```
 
