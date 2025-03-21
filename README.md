@@ -3,19 +3,34 @@ The Vehicle Allocation System is a Spring Boot application designed to streamlin
 
 Key Features:
 Branch Management: Each branch has a unique CNPJ, contact information, and a list of associated customers and vehicles.
+
 Customer Records: Maintains customer data, linking each customer to a specific branch.
+
 Vehicle Management: Supports vehicle registration with attributes such as plate, color, model, and vehicle type.
+
 Vehicle Type Classification: Organizes vehicles based on their type (e.g., Sedan, SUV, Truck).
+
 VLN Document Tracking: Records rental transactions with details like date and document value.
+
+
 Technologies Used:
 Spring Boot – Core framework for building the application.
+
 Spring Data JPA – ORM for database management.
+
 Spring WebFlux – Enables reactive, non-blocking API communication.
+
 H2 Database – In-memory database for local development and testing.
+
 PostgreSQL – Relational database for production environments.
+
 Jackson Databind – Handles JSON serialization and deserialization.
+
 Project Reactor – Supports reactive programming for high-performance operations.
+
 JUnit & Reactor Test – Ensures application reliability through testing.
+
+
 This system provides a scalable and reactive architecture, making it ideal for high-demand environments requiring real-time vehicle and customer management.
 
 ## Class Diagram
