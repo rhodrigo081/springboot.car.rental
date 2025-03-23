@@ -75,17 +75,25 @@ classDiagram
 ```
 ## 🚀 Getting Started
 **Prerequisites**
-Java 17+
-Maven
-PostgreSQL
+- Java 17+
+- Maven
+- PostgreSQL
 
-**Installation**
+## Installation
 
+**Create a directory to store the files**
 ```bash
-git clone https://github.com/seu-usuario/vehicle-allocation-system.git
-cd vehicle-allocation-system
+mkdir your-directory-name
+cd your-directory-name
+```
+
+**Clone the remote repository and install dependencies**
+```bash
+git init
+git clone https://github.com/rhodrigo081/springboot.car.rental.git
 mvn clean install
 ```
+
 **Run the application**
 ```bash
 mvn spring-boot:run
