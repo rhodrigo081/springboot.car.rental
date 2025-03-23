@@ -2,7 +2,6 @@ package springboot.decola.tech.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import springboot.decola.tech.entity.Branch;
 import springboot.decola.tech.entity.Costumer;
 import springboot.decola.tech.repository.CostumerRepository;
 

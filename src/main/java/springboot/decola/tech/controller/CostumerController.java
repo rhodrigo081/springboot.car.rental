@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.decola.tech.entity.Costumer;
-import springboot.decola.tech.repository.CostumerRepository;
 import springboot.decola.tech.service.CostumerService;
 
 import java.util.List;
