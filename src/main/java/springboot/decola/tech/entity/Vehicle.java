@@ -26,12 +26,13 @@ public class Vehicle {
     @JoinColumn(name = "branch_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference
+    @JsonIgnoreProperties("vehicles")
     private Branch branch;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vehicle_type_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnoreProperties("vehicles") // Evita referência cíclica
+    @JsonIgnoreProperties("vehicles")
     private VehicleType vehicleType;
 
     public Long getId() {
