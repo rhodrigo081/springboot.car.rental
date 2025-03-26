@@ -105,4 +105,7 @@ curl -X POST http://localhost:8080/customers \
      -H "Content-Type: application/json" \
      -d '{"name": "John Doe", "email": "johndoe@example.com", "phone": "123456789", "cpf": "000.000.000-00"}'
 ```
+**Learn more**
+
+To explore the API routes and documentation, run the application and navigate to http://localhost:9090/swagger-ui/index.html#/, where you can view the available endpoints and controllers.
 
