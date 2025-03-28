@@ -12,7 +12,7 @@
     <artifactId>rental</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>decola-tech-project</name>
-    <description>API REST for bootcamp Decola Tech 2025</description>
+    <description>APIrest for vehicle allocation</description>
     <url/>
     <licenses>
         <license/>
