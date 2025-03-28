@@ -12,10 +12,9 @@ A **Spring Boot** application designed for managing vehicle allocation across mu
 ## 🛠️ Tech Stack  
 - **Spring Boot** – Backend framework  
 - **Spring Data JPA** – ORM for database management  
-- **Spring WebFlux** – Reactive programming for non-blocking API communication  
+- **Spring Web** – Reactive programming for non-blocking API communication  
 - **H2 Database** – In-memory database for local development  
 - **PostgreSQL** – Relational database for production  
-- **Jackson Databind** – JSON serialization/deserialization  
 - **JUnit & Reactor Test** – Automated testing  
 
 ## 📂 Class Diagram  
