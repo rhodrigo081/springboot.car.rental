@@ -25,7 +25,6 @@ public class Vehicle {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "branch_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
     @JsonIgnoreProperties("vehicles")
     private Branch branch;
 

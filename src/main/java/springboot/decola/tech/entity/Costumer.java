@@ -18,11 +18,6 @@ public class Costumer {
     private String email;
     private String cpf;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "branch_id")
-    @JsonBackReference
-    private Branch branch;
-
     @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<VLNDocument> vlnDocuments;
 
@@ -64,14 +59,6 @@ public class Costumer {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public Branch getBranch() {
-        return branch;
-    }
-
-    public void setBranch(Branch branch) {
-        this.branch = branch;
     }
 
     public List<VLNDocument> getVlnDocuments() {

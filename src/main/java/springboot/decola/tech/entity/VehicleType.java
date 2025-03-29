@@ -16,7 +16,7 @@ public class VehicleType {
     private String name;
 
     @OneToMany(mappedBy = "vehicleType", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JsonIgnoreProperties("vehicleType") // Evita referência cíclica
+    @JsonIgnoreProperties("vehicleType")
     private List<Vehicle> vehicles = new ArrayList<>();
 
     public Long getId() {

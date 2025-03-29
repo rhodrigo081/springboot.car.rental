@@ -1,12 +1,13 @@
 package springboot.decola.tech.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "tab_branch")
+@Entity(name = "branch")
 public class Branch {
 
     @Id
@@ -19,11 +20,7 @@ public class Branch {
     private String name;
 
     @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JsonManagedReference
-    private List<Costumer> costumers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonIgnoreProperties("branch")
     private List<Vehicle> vehicles = new ArrayList<>();
 
     public Long getId() {
@@ -56,14 +53,6 @@ public class Branch {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Costumer> getCostumers() {
-        return costumers;
-    }
-
-    public void setCostumers(List<Costumer> costumers) {
-        this.costumers = costumers;
     }
 
     public List<Vehicle> getVehicles() {
